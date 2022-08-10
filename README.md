@@ -34,6 +34,14 @@ The lines in the script itself can be used as examples.
 
 Depending on the return code of the command, `execnotifier` will run either `notify-pass` or `notify-fail`.
 
+You can also override the icons used by defining
+
+- start_icon
+- pass_icon
+- fail_icon
+
+They should be paths to icons suitable for the notifier used.
+
 ### Example `.execnotifyrc`
 
 ```
@@ -48,3 +56,7 @@ notify_start="$notifier -i $start_icon Unittests Starting"
 notify_pass="$notifier -i $pass_icon Unittests Passed"
 notify_fail="$notifier -i $fail_icon Unittests Failed"
 ```
+
+## TODO
+
+- allow some settings to be defined in the command rather than in your global `.execnotifyrc`, e.g. the title

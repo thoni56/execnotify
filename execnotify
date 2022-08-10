@@ -3,26 +3,25 @@
 # execnotify - https://github.com/thoni56/execnotify
 #
 
-# Look for settings
-# TODO: look upwards in the file tree to find them to allow local settings
-if [ -f ~/.execnotifyrc ]; then
-    echo "Reading ~/.execnotifyrc..."
-    . ~/.execnotifyrc
-fi
-# In your settings you can set notification commands for
+# Set default icons
+start_icon=/tmp/icon-start.png
+pass_icon=/tmp/icon-pass.png
+fail_icon=/tmp/icon-fail.png
+
+# Set up notifications
+notify_start='terminal-notifier -group execnotify -title Unittests -message "Starting..." -contentImage $start_icon'
+notify_pass='terminal-notifier -remove execnotify -title Unittests -message "Passed" -contentImage $pass_icon'
+notify_fail='terminal-notifier -remove execnotify -title Unittests -message "Failed" -contentImage $fail_icon'
+
+# Look for user settings where you can override notification commands for
 # - notify_start
 # - notify_pass
 # - notify_fail
 
-# Set up notifications
-if [ "$notify_start" == "" ] ; then
-    notify_start='terminal-notifier -group execnotify -title Unittests -message "Starting..." -contentImage /tmp/icon-start.png'
-fi
-if [ "$notify_pass" == "" ] ; then
-    notify_pass='terminal-notifier -remove execnotify -title Unittests -message "Passed" -contentImage /tmp/icon-passed.png'
-fi
-if [ "$notify_fail" == "" ] ; then
-    notify_fail='terminal-notifier -remove execnotify -title Unittests -message "Failed" -contentImage /tmp/icon-failed.png'
+# TODO: look upwards in the file tree to find them to allow local settings
+if [ -f ~/.execnotifyrc ]; then
+    echo "Reading ~/.execnotifyrc..."
+    . ~/.execnotifyrc
 fi
 
 # Create icons
