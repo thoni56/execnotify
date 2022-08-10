@@ -3,6 +3,11 @@
 # execnotify - https://github.com/thoni56/execnotify
 #
 
+if [ $# -eq 0 ]; then
+    echo "usage: execnotify <command>"
+    exit 1
+fi
+
 # Set default icons
 start_icon=/tmp/icon-start.png
 pass_icon=/tmp/icon-pass.png
