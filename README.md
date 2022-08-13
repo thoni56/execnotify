@@ -40,7 +40,7 @@ You can also override the icons used by defining
 - pass_icon
 - fail_icon
 
-They should be paths to icons suitable for the notifier used.
+They should be paths to icons suitable for the notifier used. And of course readable by whatever notifier you are using.
 
 ### Example `.execnotifyrc`
 
