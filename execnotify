@@ -3,8 +3,10 @@
 # execnotify - https://github.com/thoni56/execnotify
 #
 
+error() { printf "ERROR: %s\n" "$*" >&2; }
+
 if [ $# -eq 0 ]; then
-    echo "usage: execnotify <command>"
+    echo "usage: execnotify [ -t <title> ] <command>"
     exit 1
 fi
 
@@ -13,10 +15,22 @@ start_icon=/tmp/icon-start.png
 pass_icon=/tmp/icon-pass.png
 fail_icon=/tmp/icon-fail.png
 
+if [ $1 = "-t" ] ; then
+    title=$2
+    shift 2
+else
+    title="Execution"
+fi
+
+if [ $# -eq 0 ] ; then
+    error "No command to run"
+    exit 1
+fi
+
 # Set up notifications
-notify_start='terminal-notifier -group execnotify -title Unittests -message "Starting..." -contentImage $start_icon'
-notify_pass='terminal-notifier -remove execnotify -title Unittests -message "Passed" -contentImage $pass_icon'
-notify_fail='terminal-notifier -remove execnotify -title Unittests -message "Failed" -contentImage $fail_icon'
+notify_start='terminal-notifier -group execnotify -title $title -message "Starting..." -contentImage $start_icon'
+notify_pass='terminal-notifier -remove execnotify -title $title -message "Passed" -contentImage $pass_icon'
+notify_fail='terminal-notifier -remove execnotify -title $title -message "Failed" -contentImage $fail_icon'
 
 # Look for user settings where you can override notification commands for
 # - notify_start
