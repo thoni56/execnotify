@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #======================================================================
 # execnotify - https://github.com/thoni56/execnotify
 #
@@ -28,9 +28,9 @@ if [ $# -eq 0 ] ; then
 fi
 
 # Set up notifications
-notify_start='terminal-notifier -group execnotify -title $title -message "Starting..." -contentImage $start_icon'
-notify_pass='terminal-notifier -remove execnotify -title $title -message "Passed" -contentImage $pass_icon'
-notify_fail='terminal-notifier -remove execnotify -title $title -message "Failed" -contentImage $fail_icon'
+notify_start="terminal-notifier -group execnotify -title $title -message Starting... -contentImage $start_icon"
+notify_pass="terminal-notifier -remove execnotify -title $title -message Passed -contentImage $pass_icon"
+notify_fail="terminal-notifier -remove execnotify -title $title -message Failed -contentImage $fail_icon"
 
 # Look for user settings where you can override notification commands for
 # - notify_start
