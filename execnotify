@@ -27,7 +27,7 @@ if [ $# -eq 0 ] ; then
     exit 1
 fi
 
-# Set up notifications
+# Set up default notifications (MacOS)
 notify_start="terminal-notifier -group execnotify -title $title -message Starting... -contentImage $start_icon"
 notify_pass="terminal-notifier -remove execnotify -title $title -message Passed -contentImage $pass_icon"
 notify_fail="terminal-notifier -remove execnotify -title $title -message Failed -contentImage $fail_icon"
