@@ -224,3 +224,4 @@ if [ $status == 0 ] ; then
 else
     $notify_fail
 fi
+exit $status
